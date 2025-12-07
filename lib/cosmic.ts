@@ -9,6 +9,7 @@ export const cosmic = createBucketClient({
   bucketSlug: COSMIC_BUCKET_SLUG,
   readKey: COSMIC_READ_KEY,
   writeKey: COSMIC_WRITE_KEY,
+  apiEnvironment: "staging"
 });
 
 export async function getProducts(limit = 20): Promise<Product[]> {
