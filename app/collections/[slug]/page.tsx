@@ -1,7 +1,7 @@
 // app/collections/[slug]/page.tsx
 import { notFound } from 'next/navigation';
 import { getCollectionBySlug, getProductsByCollection } from '@/lib/cosmic';
-import ProductCard from '@/components/ProductCard';
+import CollectionPageClient from '@/components/CollectionPageClient';
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -41,16 +41,7 @@ export default async function CollectionPage({ params }: { params: Promise<{ slu
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">{products.length} Products</h2>
-        {products.length > 0 ? (
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        ) : (
-          <p className="text-gray-500">No products found in this collection.</p>
-        )}
+        <CollectionPageClient products={products} collectionTitle={collection.title} />
       </div>
     </div>
   );
